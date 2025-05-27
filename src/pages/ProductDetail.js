@@ -30,8 +30,7 @@ export const ProductDetail = () => {
               </p>
               <p className="my-3"> 
                 <span>
-                <Rating rating={product.rating}/>
-                 
+                <Rating rating={product.rating}/> 
                 </span>
               </p>
               <p className="my-4 select-none">
