@@ -22,6 +22,15 @@ export const FilterProvider = ({ children }) => {
     });
   }
 
+   function initialProductList12(products) {
+    dispatch({
+      type: "PRODUCT_LIST",
+      payload: {
+        products: products,
+      },
+    });
+  }
+
   const value = {
     products: state.productList,
     initialProductList,
