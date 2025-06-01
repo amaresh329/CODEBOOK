@@ -22,14 +22,39 @@ export const FilterProvider = ({ children }) => {
     });
   }
 
-   function initialProductList12(products) {
-    dispatch({
-      type: "PRODUCT_LIST",
-      payload: {
-        products: products,
-      },
-    });
+  function bestSeller(products){
+     return products.filter(product=>product.best_seller===true);
   }
+
+  function inStock(products){
+    return products.filter(product=>product.in_stock===true);
+  }
+
+  function sort(products){
+    if(state.sortBy==="lowtohigh"){
+      return products.sort((a,b)=>Number(a.price)-Number(b.price));
+    }
+    if(state.sortBy==="hightolow"){
+      return products.sort((a,b)=>Number(b.price)-Number(a.price));
+    }
+  }
+  
+  function rating(products){
+    if(state.ratings==="4STARSABOVE"){
+      return products.filter(product=>product.rating>=4);
+    }
+    if(state.ratings==="3STARSABOVE"){
+      return products.filter(product=>product.rating>=4);
+    }
+    if(state.ratings==="2STARSABOVE"){
+      return products.filter(product=>product.rating>=4);
+    }
+    if(state.ratings==="1STARABOVE"){
+      return products.filter(product=>product.rating>=4);
+    }
+  }
+
+  const filteredProductList=rating(sort(inStock(bestSeller(state.productList))));
 
   const value = {
     products: state.productList,
